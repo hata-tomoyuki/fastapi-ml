@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+
+{% block title %}モデルの訓練{% endblock %}
+
+{% block content %}
+<h2>モデルの訓練</h2>
+<p>CSVファイルをアップロードして、タイタニック号の生存予測モデルを再トレーニングします。</p>
+
+<!-- CSVファイルアップロードフォーム -->
+<form action="/train" method="post" enctype="multipart/form-data">
+    <input class="file-input" type="file" name="file" accept=".csv" required>
+    <input type="submit" value="訓練開始">
+</form>
+
+{% if message %}
+<div class="result">
+    <h3>{{ message }}</h3>
+    {% if accuracy %}
+    <p>{{ accuracy }}</p>
+    {% endif %}
+</div>
+{% endif %}
+{% endblock %}
